@@ -19,7 +19,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        Toast.makeText(baseContext, "作者：tcyang", Toast.LENGTH_LONG).show()
+        Toast.makeText(baseContext, "作者：貝克帆", Toast.LENGTH_LONG).show()
 
         GlideApp.with(this)
             .load(R.drawable.cover)
@@ -66,6 +66,6 @@ class MainActivity : AppCompatActivity() {
             finish()
         }
     }
-
+//
 
 }
