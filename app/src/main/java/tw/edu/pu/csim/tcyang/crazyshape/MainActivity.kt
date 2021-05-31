@@ -3,16 +3,13 @@ package tw.edu.pu.csim.tcyang.crazyshape
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.Toast
 import com.bumptech.glide.annotation.GlideModule
 import com.bumptech.glide.module.AppGlideModule
 import kotlinx.android.synthetic.main.activity_main.*
-
 @GlideModule
 public final class MyAppGlideModule : AppGlideModule()
-
 
 class MainActivity : AppCompatActivity() {
 
@@ -22,11 +19,12 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        Toast.makeText(baseContext, "作者：貝克帆", Toast.LENGTH_LONG).show()
+        Toast.makeText(baseContext, "作者：tcyang", Toast.LENGTH_LONG).show()
+
         GlideApp.with(this)
-                .load(R.drawable.cover)
-                .override(800, 600)
-                .into(imgTitle)
+            .load(R.drawable.cover)
+            .override(800, 600)
+            .into(imgTitle)
 
         RndShape()
 
@@ -34,19 +32,20 @@ class MainActivity : AppCompatActivity() {
         imgNext.setOnLongClickListener(object : View.OnLongClickListener {
             override fun onLongClick(p0: View?): Boolean {
                 intent = Intent(this@MainActivity, GameActivity::class.java).apply{
-                    putExtra("形状",Flag)
+                    putExtra("形狀",Flag)
                 }
-                startActivity(intent)
+                //startActivity(intent)
+                startActivityForResult(intent, 99)
                 return true
             }
         })
 
-
         imgNext.setOnClickListener(object:View.OnClickListener{
-            override fun onClick(p0: View?){
-            RndShape()
+            override fun onClick(p0: View?) {
+                RndShape()
             }
         })
+
     }
 
     fun RndShape(){
@@ -57,8 +56,15 @@ class MainActivity : AppCompatActivity() {
             3->imgNext.setImageResource(R.drawable.star)
             4->imgNext.setImageResource(R.drawable.triangle)
         }
+    }
 
-//aa
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == 99){
+            intent = Intent(this@MainActivity, MainActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
     }
 
 

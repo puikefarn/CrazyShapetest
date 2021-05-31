@@ -15,19 +15,17 @@ class GameActivity : AppCompatActivity() {
 
     var FlagShape:Int = 0
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_game)
 
         var intent = getIntent()
-        FlagShape = intent.getIntExtra("形状", 0)
-        when(FlagShape){
-            1->txvMsg.text = "请画出圆形"
-            2->txvMsg.text = "请画出方形"
-            3->txvMsg.text = "请画出星形"
-            4->txvMsg.text = "请画出三角形"
-
+        FlagShape = intent.getIntExtra("形狀",-1)
+        when (FlagShape){
+            1->txvMsg.text = "請畫出圓形"
+            2->txvMsg.text = "請畫出方形"
+            3->txvMsg.text = "請畫出星形"
+            4->txvMsg.text = "請畫出三角形"
         }
         btnBack.isEnabled = false
 
@@ -54,7 +52,7 @@ class GameActivity : AppCompatActivity() {
                     MotionEvent.ACTION_UP -> {
                         //將handv轉成Bitmap
                         val b = Bitmap.createBitmap(handv.measuredWidth, handv.measuredHeight,
-                                Bitmap.Config.ARGB_8888)
+                            Bitmap.Config.ARGB_8888)
                         val c = Canvas(b)
                         handv.draw(c)
                         classifyDrawing(b)
@@ -78,9 +76,9 @@ class GameActivity : AppCompatActivity() {
         //val probability = outputs.probabilityAsCategoryList
 
         val outputs = model.process(image)
-                .probabilityAsCategoryList.apply {
-                    sortByDescending { it.score } // 排序，高匹配率優先
-                }.take(1)  //取最高的1個
+            .probabilityAsCategoryList.apply {
+                sortByDescending { it.score } // 排序，高匹配率優先
+            }.take(1)  //取最高的1個
         var Result:String = ""
         var FlagDraw:Int = 0
         when (outputs[0].label) {
@@ -94,13 +92,13 @@ class GameActivity : AppCompatActivity() {
                 FlagDraw=4}
         }
         //Result += ": " + String.format("%.1f%%", outputs[0].score * 100.0f)
-        Result = "您画的是"+ Result + ","
+        Result = "您畫的是" + Result + ","
         if(FlagShape==FlagDraw){
-            Result += "恭喜顺利过关！"
+            Result += "恭喜順利過關！"
             btnBack.isEnabled = true
         }
         else{
-            Result +="请再试试看喔！"
+            Result += "請再試試看喔！"
         }
 
         // Releases model resources if no longer used.
