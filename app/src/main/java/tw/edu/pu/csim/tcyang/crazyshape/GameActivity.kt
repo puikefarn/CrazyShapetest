@@ -12,9 +12,23 @@ import org.tensorflow.lite.support.image.TensorImage
 import tw.edu.pu.csim.tcyang.crazyshape.ml.Shapes
 
 class GameActivity : AppCompatActivity() {
+
+    var FlagShape:Int = 0
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_game)
+
+        var intent = getIntent()
+        FlagShape = intent.getIntExtra("形状", 0)
+        when(FlagShape){
+            1->txvMsg.text = "请画出圆形"
+            2->txvMsg.text = "请画出方形"
+            3->txvMsg.text = "请画出星形"
+            4->txvMsg.text = "请画出三角形"
+
+        }
 
         btnBack.setOnClickListener(object: View.OnClickListener{
             override fun onClick(p0: View?) {

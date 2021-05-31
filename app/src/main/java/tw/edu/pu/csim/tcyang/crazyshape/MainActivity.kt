@@ -3,6 +3,7 @@ package tw.edu.pu.csim.tcyang.crazyshape
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import com.bumptech.glide.annotation.GlideModule
@@ -32,7 +33,9 @@ class MainActivity : AppCompatActivity() {
 
         imgNext.setOnLongClickListener(object : View.OnLongClickListener {
             override fun onLongClick(p0: View?): Boolean {
-                intent = Intent(this@MainActivity, GameActivity::class.java)
+                intent = Intent(this@MainActivity, GameActivity::class.java).apply{
+                    putExtra("形状",Flag)
+                }
                 startActivity(intent)
                 return true
             }
