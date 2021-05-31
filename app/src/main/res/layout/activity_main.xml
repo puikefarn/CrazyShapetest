@@ -16,7 +16,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/cover"
         app:layout_constraintBottom_toTopOf="@id/imgNext"
-        app:layout_constrainedVectical_chainStyle="spread"
+        app:layout_constraintVertical_chainStyle="spread"
 
         />
 
