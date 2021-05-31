@@ -55,7 +55,7 @@ class MainActivity : AppCompatActivity() {
             4->imgNext.setImageResource(R.drawable.triangle)
         }
 
-
+//aa
     }
 
 
